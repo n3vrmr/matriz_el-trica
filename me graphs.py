@@ -95,13 +95,14 @@ new_df = pd.DataFrame({"País":countries,
 
 new_df.to_excel("Tabela 1.xlsx")
 
-ax = sns.barplot(final_1,x="Value",y="Area",hue="Year",palette="Spectral_r")
+ax = sns.barplot(final_1,x="Value",y="Area",hue="Year",palette="winter")
 ax.set_title(
     "Total de fontes de Energia Renovável na Matriz Elétrica dos países"
     , fontsize=18, pad=15)
 ax.set_xlabel("Valor em %")
 ax.set_xlim(right=100)
 ax.set_ylabel("País")
+ax.legend(title="Ano")
 plt.show()
 
 # now for the second graph (Poder360, if you are reading this: get on my level)
@@ -278,7 +279,7 @@ def graph(values_percent, category_names):
         np.linspace(0.15, 0.85, data.shape[1]))
 
     fig, ax = plt.subplots(figsize=(9.2, 5))
-    ax.set_title("Composição da Matriz Elétrica dos países", fontsize=18,
+    ax.set_title("Composição da Matriz Elétrica dos países (2024)", fontsize=18,
                  pad=30)
     ax.invert_yaxis()
     ax.xaxis.set_visible(True)
@@ -294,7 +295,7 @@ def graph(values_percent, category_names):
         r, g, b, _ = color
         text_color = 'white' if r * g * b < 0.5 else 'darkgrey'
         # ax.bar_label(rects, label_type='center', color=text_color)
-    ax.legend(ncols=len(category_names), bbox_to_anchor=(0, 1),
+    ax.legend(ncols=len(category_names), bbox_to_anchor=(-0.05, 1),
               loc='lower left', fontsize='small')
 
     return fig, ax
